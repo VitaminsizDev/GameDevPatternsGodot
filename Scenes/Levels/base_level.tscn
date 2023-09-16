@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp1xf1msuftkm"]
+
+[ext_resource type="PackedScene" uid="uid://fpeytemup1n2" path="res://Scenes/Particles/starry_background.tscn" id="1_ijvq3"]
+[ext_resource type="Texture2D" uid="uid://bkslo1v4t10th" path="res://addons/Simple Shapes/Square.png" id="1_lkwep"]
+
+[node name="base_level" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.0431373, 0.0431373, 0.0431373, 1)
+position = Vector2(-430, -232)
+scale = Vector2(861, 465)
+texture = ExtResource("1_lkwep")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StarryBackground" parent="." instance=ExtResource("1_ijvq3")]
