@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dne1b6oubaf41"]
+
+[ext_resource type="Texture2D" uid="uid://d1tnecaeihdf8" path="res://addons/kenney_simple-space/PNG/Retina/ship_G.png" id="1_fbpe2"]
+[ext_resource type="PackedScene" uid="uid://rsevcsv5twmu" path="res://Scenes/ShipParts/Booster.tscn" id="2_mg8td"]
+[ext_resource type="Script" path="res://Scripts/MovementComponent.gd" id="3_vuceu"]
+[ext_resource type="Script" path="res://Scripts/InputComponent.gd" id="4_vep7j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7d0nb"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4yx37"]
+radius = 27.0
+height = 86.0
+
+[node name="BaseShip" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_7d0nb")
+gravity_scale = 2.66454e-15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4yx37")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fbpe2")
+
+[node name="BoosterLeft" parent="." instance=ExtResource("2_mg8td")]
+position = Vector2(-40, 40)
+rotation = 0.698132
+
+[node name="BoosterRight" parent="." instance=ExtResource("2_mg8td")]
+position = Vector2(40, 40)
+rotation = -0.698132
+boost_position = 1
+
+[node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("3_vuceu")
+parent = NodePath("..")
+MovementType = 1
+
+[node name="InputComponent" type="Node2D" parent="."]
+script = ExtResource("4_vep7j")
