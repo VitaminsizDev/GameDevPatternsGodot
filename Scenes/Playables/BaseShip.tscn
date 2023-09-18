@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dne1b6oubaf41"]
+[gd_scene load_steps=8 format=3 uid="uid://dne1b6oubaf41"]
 
 [ext_resource type="Texture2D" uid="uid://d1tnecaeihdf8" path="res://addons/kenney_simple-space/PNG/Retina/ship_G.png" id="1_fbpe2"]
 [ext_resource type="PackedScene" uid="uid://rsevcsv5twmu" path="res://Scenes/ShipParts/Booster.tscn" id="2_mg8td"]
 [ext_resource type="Script" path="res://Scripts/MovementComponent.gd" id="3_vuceu"]
 [ext_resource type="Script" path="res://Scripts/InputComponent.gd" id="4_vep7j"]
+[ext_resource type="Script" path="res://Scripts/KeepInViewComponent.gd" id="5_vn8pe"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7d0nb"]
 friction = 0.0
@@ -38,3 +39,7 @@ MovementType = 1
 
 [node name="InputComponent" type="Node2D" parent="."]
 script = ExtResource("4_vep7j")
+
+[node name="KeepInViewComponent" type="Node2D" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("5_vn8pe")
+parent = NodePath("..")
