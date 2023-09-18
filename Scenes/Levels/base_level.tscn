@@ -1,20 +1,128 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp1xf1msuftkm"]
+[gd_scene load_steps=10 format=3 uid="uid://dp1xf1msuftkm"]
 
 [ext_resource type="PackedScene" uid="uid://fpeytemup1n2" path="res://Scenes/Particles/starry_background.tscn" id="1_ijvq3"]
-[ext_resource type="Texture2D" uid="uid://bkslo1v4t10th" path="res://addons/Simple Shapes/Square.png" id="1_lkwep"]
 [ext_resource type="PackedScene" uid="uid://dne1b6oubaf41" path="res://Scenes/Playables/BaseShip.tscn" id="3_w4614"]
+[ext_resource type="Theme" uid="uid://drt7y67qen8yo" path="res://Themes/sci_fi_theme.tres" id="4_ih4ym"]
+[ext_resource type="Texture2D" uid="uid://q367nemvthyw" path="res://addons/kenney_ui-pack-space-expansion/PNG/glassPanel.png" id="4_obcun"]
+[ext_resource type="Script" path="res://Scripts/TooltipPopup.gd" id="5_bubkd"]
+[ext_resource type="Texture2D" uid="uid://baxlapn1uxpv5" path="res://addons/kenney_ui-pack-space-expansion/PNG/glassPanel_corners.png" id="6_c0s07"]
+[ext_resource type="Script" path="res://Scripts/AnimatedButton.gd" id="7_5qwgx"]
+[ext_resource type="Texture2D" uid="uid://cnwiv52obfwcq" path="res://addons/kenney_ui-pack/PNG/grey_crossWhite.png" id="9_4a6k3"]
+[ext_resource type="Texture2D" uid="uid://dnwsism8vheev" path="res://addons/flaticons.com/info_light.svg" id="10_4vmjc"]
 
 [node name="base_level" type="Node2D"]
 
-[node name="Background" type="Sprite2D" parent="."]
-modulate = Color(0.0431373, 0.0431373, 0.0431373, 1)
-position = Vector2(-430, -232)
-scale = Vector2(861, 465)
-texture = ExtResource("1_lkwep")
-metadata/_edit_lock_ = true
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 360)
+color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="StarryBackground" parent="." instance=ExtResource("1_ijvq3")]
 
 [node name="BaseShip" parent="." instance=ExtResource("3_w4614")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PatternLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 5.0
+offset_right = 530.0
+offset_bottom = 71.0
+theme = ExtResource("4_ih4ym")
+bbcode_enabled = true
+text = "[b]<pattern_name>[/b]"
+
+[node name="PatternInfoPanel" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("popup_button")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 400.0
+grow_horizontal = 0
+pivot_offset = Vector2(400, 2.08165e-12)
+script = ExtResource("5_bubkd")
+popup_button = NodePath("../PopupButton")
+
+[node name="Background" type="NinePatchRect" parent="CanvasLayer/PatternInfoPanel"]
+layout_mode = 2
+offset_right = 400.0
+offset_bottom = 400.0
+texture = ExtResource("4_obcun")
+region_rect = Rect2(0, 0, 100, 100)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="InfoLabel" type="RichTextLabel" parent="CanvasLayer/PatternInfoPanel"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 380.0
+offset_bottom = 380.0
+theme = ExtResource("4_ih4ym")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]Info about the current game development pattern"
+
+[node name="PopupButton" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("toggled_on", "toggled_off")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_top = 2.5
+offset_right = -3.0
+offset_bottom = 52.5
+grow_horizontal = 0
+pivot_offset = Vector2(25, 25)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("6_c0s07")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("7_5qwgx")
+toggled_on = NodePath("toggled_on")
+toggled_off = NodePath("toggled_off")
+
+[node name="toggled_on" type="TextureRect" parent="CanvasLayer/PopupButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_4a6k3")
+
+[node name="toggled_off" type="TextureRect" parent="CanvasLayer/PopupButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_4vmjc")
+expand_mode = 1

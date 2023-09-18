@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://drt7y67qen8yo"]
+
+[ext_resource type="FontFile" uid="uid://dbipoxf3ka0vv" path="res://addons/kenney_ui-pack-space-expansion/Fonts/kenvector_future.ttf" id="1_qygmn"]
+
+[resource]
+default_base_scale = 2.0
+default_font = ExtResource("1_qygmn")
+default_font_size = 34
+/fonts/scifi_font = ExtResource("1_qygmn")
