@@ -2,7 +2,7 @@ extends AnimatedPanel
 
 @export var popup_button: AnimatedButton
 
-func _process(_delta):
+func _ready():
 	popup_button.connect("pressed", _toggle_popup)
 
 
